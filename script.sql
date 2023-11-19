@@ -82,3 +82,24 @@ INSERT INTO salles (nom, capacite, departement_id) VALUES
 ('Conference Room', 30, 2);
 
 INSERT INTO equipements (nom, type) VALUES ('Laptop', 'changeable'), ('Projector', 'non changeable');
+
+-- affichage des données
+
+select * from employees;
+select * from reservations;
+
+SELECT * FROM salles WHERE id =2 ;
+SELECT * FROM equipements WHERE type = 'changeable';
+
+SELECT employees.nom AS employee_name, 
+departements.nom AS department_name
+FROM employees
+INNER JOIN departements 
+ON employees.departement_id = departements.id;
+
+SELECT reservations.id AS reservation_id, 
+salles.nom AS room_name
+FROM reservations
+INNER JOIN salles 
+ON reservations.salle_id = salles.id;
+
