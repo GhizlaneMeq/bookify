@@ -59,3 +59,26 @@ CREATE TABLE equipements_reservations(
     FOREIGN KEY(equipement_id) REFERENCES equipements(id), 
     FOREIGN KEY(reservation_id) REFERENCES reservations(id) 
 );
+
+--contraint d'integrité
+
+ALTER TABLE employees
+ADD CONSTRAINT unique_email UNIQUE (email);
+
+-- insertion des données 
+
+INSERT INTO departements (nom) VALUES ('IT'), ('HR'), ('clients service');
+
+INSERT INTO postes (nom) VALUES ('Manager'), ('Developer'), ('Designer');
+
+INSERT INTO employees (nom, email, departement_id, poste_id) VALUES
+('Ghizlane meqdar', 'ghizlanemeqdar@gmail.com', 1, 2),
+('omar ennedi', 'omar.ennedi@gmail.com', 2, 3),
+('mehdi erraji', 'mehdiErraji@gmail.com', 2, 3),
+('adnan roujan', 'adnanroujan@gmail.com', 2, 3);
+
+INSERT INTO salles (nom, capacite, departement_id) VALUES
+('Meeting Room', 20, 1),
+('Conference Room', 30, 2);
+
+INSERT INTO equipements (nom, type) VALUES ('Laptop', 'changeable'), ('Projector', 'non changeable');
