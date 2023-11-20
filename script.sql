@@ -141,3 +141,13 @@ DESC
     ;
 
 
+
+-- modifier les donnée
+UPDATE departements SET nom = 'Information Technology' WHERE id = 1;
+
+UPDATE employees SET email = 'meq.ghizlane@example.com' WHERE id = 1;
+
+ALTER TABLE employees
+add COLUMN age int ;
+
+
