@@ -150,4 +150,10 @@ UPDATE employees SET email = 'meq.ghizlane@example.com' WHERE id = 1;
 ALTER TABLE employees
 add COLUMN age int ;
 
+--supprimer les données
+
+DELETE FROM departements WHERE id = 3;
+
+DELETE FROM reservations WHERE id = 1;
+
 
