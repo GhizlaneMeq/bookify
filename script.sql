@@ -156,4 +156,15 @@ DELETE FROM departements WHERE id = 3;
 
 DELETE FROM reservations WHERE id = 1;
 
+-- les index
+
+SHOW INDEXES FROM employees ;
+
+
+CREATE INDEX INDEX_employee_name ON employees(nom);
+
+
+
+
+
 
