@@ -65,6 +65,15 @@ CREATE TABLE equipements_reservations(
 ALTER TABLE employees
 ADD CONSTRAINT unique_email UNIQUE (email);
 
+ALTER TABLE employees
+ADD CONSTRAINT chk_age CHECK (age BETWEEN 18 AND 65);
+
+
+ALTER TABLE equipements
+ALTER COLUMN typeSET DEFAULT 'changeable';
+
+
+
 -- insertion des données 
 
 INSERT INTO departements (nom) VALUES ('IT'), ('HR'), ('clients service'),('Marketing'),('Comptabilité');
@@ -214,4 +223,24 @@ END//
 DELIMITER ;
 
 CALL duree_reservation(1);
+
+
+--function------------------------------------------------------------------------
+DELIMITER //
+
+CREATE FUNCTION CalculateReservationDuration(reservationId INT)
+RETURNS INT
+BEGIN
+    DECLARE duration INT;
+    
+    SELECT DATEDIFF(date_fin, date_debut) INTO duration
+    FROM reservations
+    WHERE id = reservationId;
+    
+    RETURN duration;
+END //
+
+DELIMITER ;
+
+
 
