@@ -164,7 +164,54 @@ SHOW INDEXES FROM employees ;
 CREATE INDEX INDEX_employee_name ON employees(nom);
 
 
+--les procedures
 
 
+DELIMITER //
 
+CREATE PROCEDURE chercher_employee(IN p_nom VARCHAR(15))
+BEGIN
+    SELECT * FROM employees e
+    WHERE e.nom = p_nom;
+END //
+
+DELIMITER ;
+
+CALL chercher_employee('omar ennedi');
+
+--------------------------------------------------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE GetReservationsForEmployee(IN p_employee_name VARCHAR(100))
+BEGIN
+    SELECT
+        r.id AS reservation_id,
+        r.date_debut,
+        r.date_fin,
+        s.nom AS salle_name
+    FROM
+        reservations r
+    JOIN
+        employees e ON r.employe_id = e.id
+    JOIN
+        salles s ON r.salle_id = s.id
+    WHERE
+        e.nom = p_employee_name;
+END //
+
+DELIMITER ;
+
+--------------------------------------------------------------------------------
+
+DELIMITER //
+
+CREATE PROCEDURE duree_reservation(in id int)
+BEGIN
+	SELECT DATEDIFF(r.date_fin, r.date_debut) as duree_reservation
+	FROM reservations r;
+END//
+
+DELIMITER ;
+
+CALL duree_reservation(1);
 
