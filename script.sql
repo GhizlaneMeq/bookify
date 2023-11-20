@@ -242,5 +242,15 @@ END //
 
 DELIMITER ;
 
+--trigger----------------------------------------------------------------------------
 
+CREATE TRIGGER trg_prevent_past_reservation
+BEFORE INSERT ON reservations
+FOR EACH ROW
+BEGIN
+  IF NEW.date_debut < CURDATE() THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Cannot insert reservation with a past start date';
+  END IF;
+END;
 
